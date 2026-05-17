@@ -14,26 +14,16 @@ const REASONS = [
 ];
 
 const uid = () => Date.now() + Math.floor(Math.random()*9999);
-const IS_MOCK = true;
+// No demo/mock users shipped by default
+const IS_MOCK = false;
 const esc = s => String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const fmtDate = iso => !iso ? '—' : new Date(iso).toLocaleDateString();
 const fmtRel = iso => { if(!iso) return 'pending'; const m=Math.floor((Date.now()-new Date(iso))/60000); if(m<1) return 'just now'; if(m<60) return `${m}m ago`; const h=Math.floor(m/60); if(h<24) return `${h}h ago`; return `${Math.floor(h/24)}d ago`; };
 
-// MOCK DATA (simplified)
-const RAW = [
-  {username:'xX_Void_Xx', reason:'Ban evasion', status:'suspended', notes:'Linked accounts found.'},
-  {username:'throwaway_8821', reason:'Harassment', status:'active', notes:''},
-  {username:'real_person_99', reason:'Spam', status:'suspended', notes:''},
-  {username:'NotABot2024', reason:'Coordinated behavior', status:'active', notes:''},
-  {username:'shadow_acc_lol', reason:'Ban evasion', status:'active', notes:'Needs follow-up.'},
-  {username:'fresh_start_444', reason:'Ban evasion', status:'suspended', notes:''},
-  {username:'user_deleted_1', reason:'Doxxing / Privacy', status:'suspended', notes:''},
-  {username:'burner_acc_92', reason:'Harassment', status:'active', notes:''},
-  {username:'AltAccount_v2', reason:'Ban evasion', status:'active', notes:''},
-  {username:'totally_new_guy', reason:'Spam', status:'active', notes:''},
-];
+// No initial demo data. Ledger starts empty.
+const RAW = [];
 
-let DB = RAW.map((u,i)=>({ ...u, id:i+1, dateReported:new Date(Date.now()-(i+1)*86400000).toISOString(), lastChecked:new Date().toISOString(), nextCheck:new Date(Date.now()+3600000).toISOString(), history:[{id:0,from:null,to:u.status,checkedAt:new Date().toISOString(),source:'mock'}]}));
+let DB = [];
 
 const State = { view:'users', search:'', statusFilter:'all', sortKey:'dateReported', sortDir:'desc', page:0, pageSize:25, selected:new Set(), refreshing:new Set(), flashIds:new Set() };
 
