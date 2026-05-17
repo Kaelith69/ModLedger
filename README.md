@@ -34,7 +34,7 @@ Because sometimes you want a small, dependency-free tool to track user status of
   <img src="docs/assets/architecture.svg" alt="Architecture" />
 </p>
 
-The project is intentionally simple: a static HTML entry point (`ModLedger.html`) that loads `css/styles.css` and `js/app.js`. The JavaScript persists data locally via `localStorage` and fetches real suspension statuses directly from the Reddit API (no backend required).
+The project is intentionally simple: a static HTML entry point (`index.html`) that loads `css/styles.css` and `js/app.js`. The JavaScript persists data locally via `localStorage` and fetches real suspension statuses directly from the Reddit API (no backend required).
 
 ## How it works
 
@@ -59,7 +59,7 @@ Primary flow: Add/import a user → stored securely in local browser storage →
 
 ### Installation
 
-No installation needed. Clone or download the repository and open `ModLedger.html` in your browser.
+No installation needed. Clone or download the repository and open `index.html` in your browser.
 
 ### Configuration
 
@@ -67,13 +67,13 @@ This repository has no environment variables or runtime configuration files. The
 
 ### Running locally
 
-- Quick: open `ModLedger.html` in your browser.
+- Quick: open `index.html` in your browser.
 - Optional (local server):
 
 ```bash
 # if you have Python 3
 python -m http.server 8000
-# then visit http://localhost:8000/ModLedger.html
+# then visit http://localhost:8000/
 ```
 
 (Assumption: the repository contains only static files; the simple server command is provided as a convenience if you prefer serving files over file://.)
@@ -93,7 +93,7 @@ python -m http.server 8000
 
 ## Project structure
 
-- `ModLedger.html` — single-page entry point and markup.
+- `index.html` — single-page entry point and markup.
 - `css/styles.css` — styles and theme tokens.
 - `js/app.js` — application logic, rendering, Reddit API integration, and UI handlers.
 - `docs/assets/` — generated SVG assets (banner, architecture, flow).
