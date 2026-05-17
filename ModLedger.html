@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>ModLedger — Reddit Moderation Infrastructure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div class="wordmark">
+      <div class="wordmark-icon">ML</div>
+      <span class="wordmark-text">ModLedger</span>
+      <span class="wordmark-ver">v1.0.0</span>
+    </div>
+    <div class="vdiv"></div>
+    <nav id="nav">
+      <button class="nav-btn active" data-view="users">Users</button>
+      <button class="nav-btn" data-view="analytics">Analytics</button>
+      <button class="nav-btn" data-view="settings">Settings</button>
+    </nav>
+    <div class="spacer"></div>
+    <div class="kb-hints">
+      <span><kbd>/</kbd> search</span>
+      <span><kbd>⌘N</kbd> add</span>
+      <span><kbd>⌘I</kbd> import</span>
+      <span><kbd>esc</kbd> clear</span>
+    </div>
+    <div class="pulse-dot sys-dot" title="System operational"></div>
+  </header>
+
+  <main id="main">
+    <div id="stats-row" class="stats-row"></div>
+
+    <div class="toolbar">
+      <div class="search-wrap">
+        <span class="icon">/</span>
+        <input id="search-inp" class="search-inp" placeholder="Search users, subs, reasons…" />
+        <button id="search-clear" class="search-clear" aria-label="Clear search">✕</button>
+      </div>
+      <div class="filter-pills" id="filter-pills"></div>
+      <select id="sub-sel" class="sub-sel" aria-label="Filter by subreddit"><option value="all">all</option></select>
+      <div class="spacer"></div>
+      <div class="result-count" id="result-count">0 results</div>
+      <div class="bulk-actions" id="bulk-actions">
+        <div class="bulk-count" id="bulk-count">0 selected</div>
+        <button class="btn btn-sm btn-secondary" id="bulk-refresh-btn">↻ Refresh</button>
+        <button class="btn btn-sm btn-danger" id="bulk-delete-btn">× Remove</button>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <div class="tbl-scroll">
+        <table>
+          <thead id="table-head"></thead>
+          <tbody id="table-body"></tbody>
+        </table>
+      </div>
+      <div class="pagination" id="pagination">
+        <div class="page-info" id="page-info"></div>
+        <div class="page-btns" id="page-btns"></div>
+      </div>
+    </div>
+
+    <section id="view-analytics"></section>
+    <section id="view-settings"></section>
+  </main>
+
+  <!-- Modal -->
+  <div id="modal-overlay" class="overlay">
+    <div class="modal" id="modal-box">
+      <div class="modal-header"><div id="modal-title" class="modal-title"></div><button class="modal-close" onclick="ML.closeModal()">×</button></div>
+      <div class="modal-body" id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- Drawer -->
+  <div id="drawer-overlay" class="drawer-overlay"></div>
+  <div id="drawer" class="drawer"></div>
+
+  <!-- Toasts -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- Statusbar -->
+  <div id="statusbar">
+    <div class="sb-text" id="sb-text">MODLEDGER</div>
+    <div class="sb-sep" id="sb-sep"></div>
+    <div class="sb-checking" id="sb-checking"><div class="sys-dot"></div><div id="sb-checking-text">checking…</div></div>
+  </div>
+
+  <script src="js/app.js" defer></script>
+</body>
+</html>
