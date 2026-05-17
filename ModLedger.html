@@ -23,6 +23,7 @@
       <button class="nav-btn" data-view="settings">Settings</button>
     </nav>
     <div class="spacer"></div>
+    <button id="theme-toggle" class="theme-toggle" title="Toggle dark mode" aria-label="Toggle dark mode">🌙</button>
     <div class="kb-hints">
       <span><kbd>/</kbd> search</span>
       <span><kbd>⌘N</kbd> add</span>
@@ -38,11 +39,10 @@
     <div class="toolbar">
       <div class="search-wrap">
         <span class="icon">/</span>
-        <input id="search-inp" class="search-inp" placeholder="Search users, subs, reasons…" />
+        <input id="search-inp" class="search-inp" placeholder="Search users, reasons…" />
         <button id="search-clear" class="search-clear" aria-label="Clear search">✕</button>
       </div>
       <div class="filter-pills" id="filter-pills"></div>
-      <select id="sub-sel" class="sub-sel" aria-label="Filter by subreddit"><option value="all">all</option></select>
       <div class="spacer"></div>
       <div class="result-count" id="result-count">0 results</div>
       <div class="bulk-actions" id="bulk-actions">

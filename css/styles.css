@@ -1,7 +1,7 @@
 /* ── RESET & BASE ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* Reddit-like light theme tokens */
+  /* Reddit-like light theme tokens (DEFAULT) */
   --bg0:#f6f7f8; /* page background */
   --bg1:#ffffff; /* card / surface */
   --bg2:#f0f2f4; /* subtle surfaces */
@@ -15,15 +15,36 @@
   --radius:8px;
   --motion-fast:120ms; --motion-medium:200ms;
 }
+
+/* AMOLED Dark Mode — Class-based only */
+body.dark-mode {
+  --bg0:#000000;
+  --bg1:#0a0a0b;
+  --bg2:#1a1a1b;
+  --bg3:#272729;
+  --b0:#404040;
+  --b1:#3a3a3b;
+  --b2:#2d2d2d;
+  --t0:#d7dadc;
+  --t1:#818384;
+  --t2:#565656;
+  --t3:#404040;
+  --ac:#ff4500;
+  --achi:#ff6a1a;
+  --acd:#1a0f08;
+}
 html,body{background:var(--bg0);color:var(--t0);font-family:var(--sans);min-height:100vh;font-size:14px}
 ::-webkit-scrollbar{width:5px;height:5px}
 ::-webkit-scrollbar-track{background:var(--bg0)}
 ::-webkit-scrollbar-thumb{background:var(--b2);border-radius:4px}
+body.dark-mode::-webkit-scrollbar-thumb{background:#333333}
 ::selection{background:#2a2a6a;color:#e0e0ff}
+body.dark-mode ::selection{background:#1a1a4a;color:#ff4500}
 input,textarea,select{outline:none;font-family:var(--mono);color:var(--t0);background:var(--bg1);border:1px solid var(--b2);border-radius:3px;transition:border-color .12s}
 input:focus,textarea:focus,select:focus{border-color:var(--ac)}
 input::placeholder,textarea::placeholder{color:var(--t3)}
 select option{background:var(--bg2);color:var(--t0)}
+body.dark-mode select option{background:#1a1a1b;color:#d7dadc}
 button{cursor:pointer;font-family:var(--mono)}
 a{text-decoration:none;color:inherit}
 
@@ -89,7 +110,6 @@ kbd{background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radi
 .pill:hover{background:var(--bg2);border-color:var(--b2);color:var(--t1)}
 .pill.active{background:var(--ac);border-color:var(--ac);color:#fff}
 .pill-count{font-size:9px;opacity:.7}
-.sub-sel{height:30px;padding:0 26px 0 8px;font-size:10px;width:auto;min-width:90px;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23484860' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 8px center}
 .result-count{font-size:10px;color:var(--t3);font-family:var(--mono);white-space:nowrap}
 .bulk-actions{display:flex;gap:6px;align-items:center}
 .bulk-count{font-size:10px;color:var(--t3);font-family:var(--mono)}
@@ -107,6 +127,8 @@ kbd{background:var(--bg3);border:1px solid var(--b2);color:var(--t3);border-radi
 .btn-ghost:hover{background:var(--bg2);border-color:var(--b2)}
 .btn-danger{background:#1e0808;border-color:#6a2020;color:#e06060}
 .btn-danger:hover{background:#3a1010}
+body.dark-mode .btn-danger{background:#2a0a0a;border-color:#5a1515;color:#ff6666}
+body.dark-mode .btn-danger:hover{background:#4a1515}
 .btn:disabled{opacity:.4;cursor:not-allowed}
 
 /* ── TABLE ── */
@@ -125,7 +147,6 @@ td{padding:8px 12px;font-size:12px;color:var(--t1);border-bottom:1px solid var(-
 td:first-child{width:38px}
 .td-user a{color:var(--ac);font-weight:700;font-size:13px;font-family:var(--sans)}
 .td-user a:hover{text-decoration:underline}
-.td-sub{color:#6888aa}
 .td-reason{color:var(--t2);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px}
 .td-reporter{color:var(--t3);font-size:11px}
 .td-date{color:var(--t3);font-size:11px;white-space:nowrap}
@@ -140,6 +161,12 @@ td:first-child{width:38px}
 .badge-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;animation:pulse 1.8s ease infinite}
 .badge-sm{font-size:9px;padding:2px 6px}
 .badge-sm .badge-dot{width:5px;height:5px}
+
+/* ── DARK MODE TOGGLE ── */
+.theme-toggle{background:none;border:1px solid var(--b2);color:var(--t2);width:32px;height:32px;display:inline-flex;align-items:center;justify-content:center;border-radius:6px;cursor:pointer;transition:all .12s;font-size:14px}
+.theme-toggle:hover{border-color:var(--ac);color:var(--ac)}
+body.dark-mode .theme-toggle{color:var(--t2)}
+body.dark-mode .theme-toggle:hover{border-color:var(--achi);color:var(--achi)}
 
 /* CONF bar removed (unused) */
 
@@ -171,6 +198,7 @@ td:first-child{width:38px}
 
 .field input,.field select,.field textarea{width:100%;padding:7px 10px;font-size:12px;background:var(--bg1);border:1px solid var(--b2);border-radius:3px;color:var(--t0);font-family:var(--mono)}
 .field select{appearance:none;padding-right:28px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23484860' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center}
+body.dark-mode .field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23818384' stroke-width='1.5' fill='none'/%3E%3C/svg%3E")}
 .field textarea{resize:vertical}
 .field input:focus,.field select:focus,.field textarea:focus{border-color:var(--ac)}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
@@ -184,6 +212,7 @@ td:first-child{width:38px}
 .modal-body{padding:20px}
 .modal-footer{display:flex;gap:8px;justify-content:flex-end;margin-top:4px}
 .form-error{display:none;background:#1e0a0a;border:1px solid #4a1515;color:#d06060;font-size:11px;padding:8px 12px;border-radius:3px;margin-bottom:14px;font-family:var(--mono)}
+body.dark-mode .form-error{background:#2a0a0a;border:1px solid #5a1515;color:#ff6666}
 
 .modal-confirm{font-size:13px;color:var(--t1);line-height:1.6;margin-bottom:20px}
 .drawer-title-row{display:flex;align-items:center;gap:8px;margin-bottom:4px}
@@ -298,6 +327,16 @@ button, .btn, .stat-card, .modal, .drawer, .toast, .badge, .action-btn, input, s
 #modal-overlay{display:none}
 #drawer-overlay,#drawer{display:none}
 #sb-checking{display:none}
+
+/* ── DARK MODE ENHANCEMENTS ── */
+body.dark-mode tbody tr.sel td{background:#1a1a3a!important}
+body.dark-mode .tooltip,.tip{background:var(--bg2);border-color:var(--b2)}
+body.dark-mode .modal{box-shadow:0 32px 80px rgba(0,0,0,.9)}
+body.dark-mode .toast{box-shadow:0 4px 16px rgba(0,0,0,.8)}
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder{color:var(--t2)}
+body.dark-mode .action-btn.danger-btn{color:#ff8888}
+body.dark-mode .action-btn.danger-btn:hover{border-color:#ff6666;color:#ff6666}
 
 /* Table head / helper classes */
 .th-select{width:38px}
