@@ -13,7 +13,7 @@ One-sentence hook: A tiny, browser-first ledger for tracking whether Reddit acco
 
 ## What even is this?
 
-ModLedger is a simple static web app (single HTML page with vanilla CSS and JavaScript) that lets moderators keep a local ledger of Reddit accounts and their suspend status. It stores mock data in-memory, provides quick checks, a compact ledger view, and CSV export.
+ModLedger is a simple static web app (single HTML page with vanilla CSS and JavaScript) that lets moderators keep a local ledger of Reddit accounts and their suspend status. It stores data locally in your browser, provides real-time checks using the Reddit API, a compact ledger view, and CSV export.
 
 ## Why does this exist?
 
@@ -23,7 +23,7 @@ Because sometimes you want a small, dependency-free tool to track user status of
 
 - Track Reddit usernames with reason, notes, and quick status badges.
 - Manual add and bulk import (one per line / CSV-style).
-- Check/refresh status (mocked in the current implementation).
+- Check/refresh status in real-time via the official Reddit API.
 - View status history per user in a drawer.
 - Export filtered results to CSV.
 - AMOLED-friendly dark mode with a manual toggle.
@@ -34,7 +34,7 @@ Because sometimes you want a small, dependency-free tool to track user status of
   <img src="docs/assets/architecture.svg" alt="Architecture" />
 </p>
 
-The project is intentionally simple: a static HTML entry point (`ModLedger.html`) that loads `css/styles.css` and `js/app.js`. The JavaScript contains an in-memory mock ledger (no backend) and UI logic.
+The project is intentionally simple: a static HTML entry point (`ModLedger.html`) that loads `css/styles.css` and `js/app.js`. The JavaScript persists data locally via `localStorage` and fetches real suspension statuses directly from the Reddit API (no backend required).
 
 ## How it works
 
@@ -42,13 +42,13 @@ The project is intentionally simple: a static HTML entry point (`ModLedger.html`
   <img src="docs/assets/flow.svg" alt="Flow" />
 </p>
 
-Primary flow: Add/import a user → stored in the in-memory ledger → status checks (manual or scheduled) → status updates recorded in history → export or manual review.
+Primary flow: Add/import a user → stored securely in local browser storage → status checks (live via Reddit API) → status updates recorded in history → export or manual review.
 
 ## Tech stack
 
 - HTML: User interface skeleton — zero build tooling, easy to open in any browser.
 - CSS: Styling and AMOLED dark mode tokens — simple variables and class-based theming.
-- JavaScript: UI logic and in-memory data store (`js/app.js`).
+- JavaScript: UI logic, Reddit API integration, and `localStorage` persistence (`js/app.js`).
 
 ## Getting started
 
@@ -63,7 +63,7 @@ No installation needed. Clone or download the repository and open `ModLedger.htm
 
 ### Configuration
 
-This repository has no environment variables or runtime configuration files. The app is purely client-side and uses `localStorage` only to persist the theme.
+This repository has no environment variables or runtime configuration files. The app is purely client-side and uses `localStorage` to persist your ledger data and theme preferences.
 
 ### Running locally
 
@@ -95,14 +95,15 @@ python -m http.server 8000
 
 - `ModLedger.html` — single-page entry point and markup.
 - `css/styles.css` — styles and theme tokens.
-- `js/app.js` — application logic, rendering, mock data, and UI handlers.
+- `js/app.js` — application logic, rendering, Reddit API integration, and UI handlers.
 - `docs/assets/` — generated SVG assets (banner, architecture, flow).
 
 ## API reference (client-side functions)
 
 This project is client-side only. Key functions available in `js/app.js`:
 
-- `ML.refresh(id)` — simulate refresh of a user's status.
+- `ML.refresh(id)` — fetch and update a user's status via the Reddit API.
+- `ML.checkAll()` — bulk verify all users with built-in rate limiting.
 - `ML.openAddModal()` — open the add-user modal.
 - `ML.openBulkModal()` — open the bulk import modal.
 - `ML.openEdit(id)` — open edit modal for a user.
@@ -127,7 +128,7 @@ There are no automated tests in this repository.
 
 - [ ] Add optional persistent backend (API + database).
 - [ ] Add automated tests and a CI workflow.
-- [ ] Improve mock status checks to integrate a real API (opt-in).
+- [x] Improve mock status checks to integrate a real API.
 
 ## License
 
