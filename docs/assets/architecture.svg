@@ -1,0 +1,46 @@
+<svg width="100%" viewBox="0 0 900 500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Architecture diagram">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#9aa5b1" />
+    </marker>
+  </defs>
+  <!-- Zones -->
+  <rect x="20" y="20" width="420" height="220" rx="8" fill="#081233" stroke="#1e3a8a" stroke-dasharray="6" />
+  <text x="40" y="44" font-family="system-ui, -apple-system, monospace" font-size="13" fill="#9aa5b1">Frontend</text>
+
+  <rect x="460" y="20" width="420" height="220" rx="8" fill="#08121a" stroke="#0e7f5a" stroke-dasharray="6" />
+  <text x="480" y="44" font-family="system-ui, -apple-system, monospace" font-size="13" fill="#9aa5b1">Client logic & storage</text>
+
+  <rect x="20" y="260" width="860" height="200" rx="8" fill="#071018" stroke="#6b7280" stroke-dasharray="6" />
+  <text x="40" y="284" font-family="system-ui, -apple-system, monospace" font-size="13" fill="#9aa5b1">External</text>
+
+  <!-- Components -->
+  <g font-family="system-ui, -apple-system, monospace" font-size="13" fill="#dbe6ef">
+    <rect x="60" y="70" width="180" height="110" rx="8" fill="#071233" stroke="#2b6fd6" />
+    <text x="150" y="95" text-anchor="middle">Browser</text>
+    <text x="150" y="115" text-anchor="middle" font-size="12" fill="#9aa5b1">renders static UI</text>
+
+    <rect x="260" y="70" width="180" height="110" rx="8" fill="#071233" stroke="#2b6fd6" />
+    <text x="350" y="95" text-anchor="middle">Static files</text>
+    <text x="350" y="115" text-anchor="middle" font-size="12" fill="#9aa5b1">ModLedger.html, css, js</text>
+
+    <rect x="500" y="70" width="260" height="110" rx="8" fill="#072a20" stroke="#0e7f5a" />
+    <text x="630" y="95" text-anchor="middle">Client JS app</text>
+    <text x="630" y="115" text-anchor="middle" font-size="12" fill="#9aa5b1">renders table, handles state</text>
+
+    <rect x="500" y="200" width="200" height="70" rx="8" fill="#042a14" stroke="#0e7f5a" />
+    <text x="600" y="235" text-anchor="middle">In-memory DB</text>
+    <text x="600" y="250" text-anchor="middle" font-size="12" fill="#9aa5b1">mock data stored in JS</text>
+
+    <rect x="60" y="300" width="220" height="90" rx="8" fill="#0b0b0b" stroke="#6b7280" />
+    <text x="170" y="330" text-anchor="middle">Reddit (external)</text>
+    <text x="170" y="350" text-anchor="middle" font-size="12" fill="#9aa5b1">u/ links — external lookups</text>
+  </g>
+
+  <!-- Arrows -->
+  <line x1="240" y1="125" x2="260" y2="125" stroke="#9aa5b1" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="440" y1="125" x2="500" y2="125" stroke="#9aa5b1" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="630" y1="170" x2="630" y2="200" stroke="#9aa5b1" stroke-width="2" marker-end="url(#arrow)" />
+  <line x1="180" y1="360" x2="500" y2="260" stroke="#9aa5b1" stroke-width="2" marker-end="url(#arrow)" />
+
+</svg>

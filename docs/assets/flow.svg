@@ -1,0 +1,71 @@
+<svg width="100%" viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="ModLedger flow">
+  <defs>
+    <marker id="mArrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#0b7285" />
+    </marker>
+    <marker id="mArrowErr" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#ff6b66" />
+    </marker>
+    <marker id="mArrowAmber" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d97706" />
+    </marker>
+  </defs>
+
+  <style>
+    .label { font-family: system-ui, -apple-system, monospace; font-size:13px; fill:#dbe6ef }
+  </style>
+
+  <!-- Steps (left-to-right) -->
+  <!-- Step 1: Add / Import -->
+  <rect x="30" y="60" width="150" height="70" rx="8" fill="#07282a" stroke="#0b7285" />
+  <text x="105" y="100" text-anchor="middle" class="label">Add / Import user</text>
+  <text x="105" y="118" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">manual or bulk</text>
+
+  <!-- Arrow to next -->
+  <line x1="180" y1="95" x2="260" y2="95" stroke="#0b7285" stroke-width="2" marker-end="url(#mArrow)" />
+
+  <!-- Step 2: Ledger entry -->
+  <rect x="260" y="60" width="160" height="70" rx="8" fill="#071218" stroke="#0b7285" />
+  <text x="340" y="100" text-anchor="middle" class="label">Stored in ledger</text>
+  <text x="340" y="118" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">in-memory mock DB</text>
+
+  <!-- Arrow to next -->
+  <line x1="420" y1="95" x2="500" y2="95" stroke="#0b7285" stroke-width="2" marker-end="url(#mArrow)" />
+
+  <!-- Step 3: Status check (decision) -->
+  <g transform="translate(500,60)">
+    <g transform="translate(0,0) rotate(0)">
+      <rect x="0" y="0" width="170" height="70" rx="8" fill="#0b1220" stroke="#d97706" />
+      <text x="85" y="30" text-anchor="middle" class="label">Check status</text>
+      <text x="85" y="48" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">refresh / scheduled</text>
+    </g>
+  </g>
+
+  <!-- Arrow down to decision outcome: suspended -->
+  <line x1="585" y1="130" x2="585" y2="195" stroke="#0b7285" stroke-width="2" marker-end="url(#mArrow)" />
+
+  <rect x="540" y="195" width="90" height="60" rx="6" fill="#07282a" stroke="#0b7285" />
+  <text x="585" y="225" text-anchor="middle" class="label">Suspended</text>
+  <text x="585" y="244" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">flagged in ledger</text>
+
+  <!-- Arrow to right (happy path active) -->
+  <line x1="665" y1="95" x2="745" y2="95" stroke="#0b7285" stroke-width="2" marker-end="url(#mArrow)" />
+  <rect x="745" y="60" width="120" height="70" rx="8" fill="#071218" stroke="#0b7285" />
+  <text x="805" y="100" text-anchor="middle" class="label">Active</text>
+  <text x="805" y="118" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">no action needed</text>
+
+  <!-- Error path example (manual removal) -->
+  <line x1="585" y1="255" x2="585" y2="320" stroke="#ff6b66" stroke-width="2" marker-end="url(#mArrowErr)" />
+  <rect x="520" y="320" width="130" height="60" rx="6" fill="#2a0a0a" stroke="#ff6b66" />
+  <text x="585" y="350" text-anchor="middle" class="label">Manual review</text>
+  <text x="585" y="368" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">edit / remove</text>
+
+  <!-- Legend -->
+  <rect x="40" y="320" width="120" height="24" rx="6" fill="#07282a" stroke="#0b7285" />
+  <text x="100" y="338" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">Happy path (teal)</text>
+  <rect x="180" y="320" width="120" height="24" rx="6" fill="#2a0a0a" stroke="#ff6b66" />
+  <text x="240" y="338" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">Error path (coral)</text>
+  <rect x="320" y="320" width="120" height="24" rx="6" fill="#0b1220" stroke="#d97706" />
+  <text x="380" y="338" text-anchor="middle" font-family="system-ui, -apple-system, monospace" font-size="11" fill="#9aa5b1">Decision (amber)</text>
+
+</svg>
