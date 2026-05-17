@@ -370,3 +370,154 @@ body.dark-mode .action-btn.danger-btn:hover{border-color:#ff6666;color:#ff6666}
 
 /* Pulse dot (topbar) sizing */
 .pulse-dot.sys-dot{width:7px;height:7px}
+
+/* ── RESPONSIVE / MOBILE OPTIMIZATION ── */
+
+@media (max-width: 768px) {
+  /* Layout & Safe Areas */
+  #main {
+    padding: 12px 12px calc(80px + env(safe-area-inset-bottom)) 12px;
+  }
+  #topbar {
+    padding: 0 max(12px, env(safe-area-inset-left)) 0 max(12px, env(safe-area-inset-right));
+    padding-top: env(safe-area-inset-top);
+  }
+  .kb-hints {
+    display: none; /* Hide shortcuts on touch */
+  }
+  
+  /* Buttons & Inputs (Touch Targets) */
+  .btn, .pill, .search-inp, .field input, .field select, .field textarea {
+    min-height: 44px;
+    font-size: 14px;
+  }
+  .action-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+  }
+  .row-cb {
+    width: 22px;
+    height: 22px;
+  }
+  
+  /* Toolbars & Filters */
+  .toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  .search-wrap {
+    max-width: 100%;
+  }
+  .filter-pills {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 8px; /* space for scrollbar */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .filter-pills::-webkit-scrollbar {
+    display: none;
+  }
+  .bulk-actions {
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  /* Stats Row */
+  .stat-card {
+    flex: 1 1 40%;
+  }
+  .stat-actions {
+    width: 100%;
+    flex-wrap: wrap;
+    margin-top: 8px;
+  }
+  .stat-actions .btn {
+    flex: 1;
+    justify-content: center;
+  }
+
+  /* Table to Card Conversion */
+  .table-wrap {
+    border: none;
+    background: transparent;
+  }
+  table, thead, tbody, th, td, tr { 
+    display: block; 
+  }
+  thead tr { 
+    display: none; 
+  }
+  tbody tr { 
+    display: flex; 
+    flex-wrap: wrap; 
+    margin-bottom: 12px; 
+    border: 1px solid var(--b1); 
+    border-radius: 12px; 
+    padding: 16px; 
+    background: var(--bg1); 
+    position: relative; 
+  }
+  td { 
+    border-bottom: none; 
+    padding: 4px; 
+  }
+  /* 1: Checkbox */
+  td:nth-child(1) { width: 100%; display: flex; justify-content: flex-end; order: 1; margin-bottom: -24px; position: relative; z-index: 10; } 
+  /* 2: Username */
+  td:nth-child(2) { width: 100%; font-size: 16px; order: 2; margin-bottom: 8px; } 
+  /* 3: Status */
+  td:nth-child(3) { width: auto; order: 3; } 
+  /* 4: Reason */
+  td:nth-child(4) { width: 100%; order: 4; font-size: 14px; color: var(--t2); margin-top: 8px; margin-bottom: 8px; white-space: normal; } 
+  /* 5: Date (hide or move) */
+  td:nth-child(5) { display: none; } 
+  /* 6: Check time */
+  td:nth-child(6) { width: auto; order: 5; margin-left: auto; font-size: 12px; color: var(--t3); align-self: flex-start; margin-top: 4px; } 
+  /* 7: Actions */
+  td:nth-child(7) { width: 100%; order: 6; margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--b0); display: flex; justify-content: space-between; }
+  .action-btns {
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  /* Remove hover tooltips on touch */
+  .tip-wrap .tip {
+    display: none !important;
+  }
+
+  /* Modals & Drawers */
+  .modal {
+    width: calc(100% - 32px) !important; /* Override JS width */
+    max-height: 85vh;
+    margin: 16px;
+    align-self: flex-end; /* Sheet style */
+  }
+  .drawer {
+    width: 100%;
+    max-width: none;
+    border-left: none;
+  }
+  .drawer-body {
+    padding-bottom: calc(40px + env(safe-area-inset-bottom));
+  }
+}
+
+@media (max-width: 480px) {
+  .wordmark-text, .wordmark-ver {
+    display: none;
+  }
+  .hero-value {
+    font-size: 28px;
+  }
+  .analytics-hero {
+    gap: 16px;
+    padding: 16px;
+  }
+  .analytics-grid {
+    grid-template-columns: 1fr;
+  }
+}
